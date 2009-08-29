@@ -17,6 +17,6 @@
         $checked = true;
     }
     
-    echo form::checkbox($field->name . '[]', $field->value, $checked, $field->extra);
+    echo form::checkbox($field->name . '[]', $field->value, $checked, form::attributes($field->extra));
 
 ?>

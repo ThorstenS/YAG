@@ -21,32 +21,7 @@
 	.copyright { font-size: 0.9em; text-transform: uppercase; color: #557d10; }
 	</style>
     
-    <script languange="text/javascript">
-        
-        function check_all(formname) {
-
-            form = document.forms[formname];
-        	i = 0;
-        
-        	while (element = form.elements[i]) {
-
-        		if (element.type == 'checkbox'){
-        			
-        			if (document.forms[formname].elements['checkall'].checked == true) {
-                        element.checked = true;
-        			}
-        			else {
-                        element.checked = false;
-        			}
-        		}
-        		i++;
-        	}
-        
-        	return true;
-            
-        }
-        
-    </script>
+    <?php echo $checkall_js; ?>
     
 </head>
 <body>

@@ -6,6 +6,6 @@
         $selected = true;
     }
     
-    echo form::radio($field->name, $field->value, $selected, $field->extra);
+    echo form::radio($field->name, $field->value, $selected, form::attributes($field->extra));
 
 ?>

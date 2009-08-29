@@ -24,14 +24,17 @@ class Yagdemo_Controller extends Template_Controller {
         $grid->CheckboxField('id')->
                             set('title', 'ID')->
                             // Array with Checkbox values that are checked by default
-                            set('checked', array(1,2,3,4))->
+                            set('checked', array(2,3,4, 6, 9))->
                             // Can be sorted by ID
                             set('sortable', true)->
                             // Add extra data to the foot row
                             set('foot', 
-                                form::checkbox('checkall', 'yes', false, "onclick=\"check_all('form1');\"") . 
-                                form::dropdown('action',array('edit' => 'Edit', 'delete' => 'Delete'),'edit')
-                                );
+                                form::checkbox('checkall', 'yes', false, "onclick=\"check_all('id[]');\"") . 
+                                form::dropdown('action',array('edit' => 'Edit', 'delete' => 'Delete'),'edit') . 
+                                form::submit('submit', 'OK')
+                                )->
+                            set('extra', array("onclick" => "checkbox_check('id[]')"))
+                            ;
         
         $grid->TextField('id')->
                             set('title', 'ID')->
@@ -47,7 +50,7 @@ class Yagdemo_Controller extends Template_Controller {
                             set('format', 'Y-m-d')->
                             set('sortable', true);
                                                 
-        $grid->ActionField('')->
+        $grid->ActionField()->
                             set('title', 'Action')->
                             // Add action "edit", linked to a specific controller
                             add_action('edit', 'id', 'Edit', 'http://www.path.to/my/controller')->
@@ -90,6 +93,9 @@ class Yagdemo_Controller extends Template_Controller {
         $grid->set('data', $data);
         
         $html = $grid->render();
+        
+        // Get Javascript for checkbox gimmicks
+        $this->template->checkall_js = $grid->render_js('checkall');
         
         $this->template->content = $html;
         

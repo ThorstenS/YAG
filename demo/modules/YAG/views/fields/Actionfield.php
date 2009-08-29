@@ -7,7 +7,7 @@
         // Create <a href="URL/action/ID">TEXT</a> 
         $link = '/' . $action . '/' . $field->value->{$value_field};
         
-        echo html::anchor($field->url[$action] . $link, $field->text[$action], $field->extra, $field->protocol) . ' ';
+        echo html::anchor($field->url[$action] . $link, $field->text[$action], form::attributes($field->extra), $field->protocol) . ' ';
         
     }
 

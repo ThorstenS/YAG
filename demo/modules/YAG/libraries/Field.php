@@ -45,9 +45,9 @@ abstract class Field_Core
     /**
     * Field extra data, used differently based on fieldtype
     * @access protected
-    * @var string
+    * @var array
     */
-    protected $extra = '';
+    protected $extra = array();
     
     /**
     * Display sorting options in <thead>
@@ -154,7 +154,7 @@ abstract class Field_Core
      */
     public function render() 
     {
-        return View::factory($this->template_path . get_class($this))
+        return View::factory($this->template_path . 'fields/' . get_class($this))
                             ->set('field', $this)
                             ->render();
         

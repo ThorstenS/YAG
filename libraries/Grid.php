@@ -283,11 +283,15 @@ class Grid_Core {
      * @version 1.0
      * @since 1.0
      */
-    public function __call($method, $arguments) 
+    public function __call($method, $arguments = NULL) 
     {
         // Class name
 		$field = ucfirst(strtolower($method));
-
+        
+        if(!$arguments) {
+            $arguments = array(0 => '');
+        }
+        
 		// Create the field
 		$field = new $field($arguments[0]);
 
@@ -326,7 +330,32 @@ class Grid_Core {
                             ->render();
         
     } // END function render
+    
+    /** 
+     * Return JavaScript
+     * 
+     * Returns JavaScripts in views/js directory
+     * 
+     * @param string    $name   Name of JavaScript
+     *
+     * @return string
+     * @access	public
+     *
+     * @author Thorsten Schmidt
+     * @date 29.08.2009
+     * @version 1.0
+     * @since 1.0
+     */
+    public function render_js($name) {
         
+        if(substr($name, -3) != '.js') {
+            $name .= '.js';
+        }
+        
+        return View::factory($this->template_path . 'js/' . $name)->render();
+        
+    } // END function render_js
+    
     /** 
      * Destrcutor
      * 
