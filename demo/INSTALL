@@ -1,0 +1,11 @@
+Installation of this demo:
+
+1. Copy to your webserver
+
+2. CHMOD 777 application/logs
+
+3. Rename example.htaccess to .htaccess
+
+4. Create database from DATABASE.sql
+
+5. Modify application/config/database.php to your server settings

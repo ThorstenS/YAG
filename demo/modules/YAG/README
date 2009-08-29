@@ -1,0 +1,46 @@
+This is my attempt to create a grid module for KohanaPHP (2.3.4)
+
+Unfortunately I havn't got a demonstration site up, so I try to explain how it works here:
+
+Download all files and save them in a folder inside "modules", call that folder grid or YAG or whatever.
+
+Then alter your config.php so that the module is known by Kohana
+
+$config['modules'] = array
+(
+    MODPATH. 'grid',  // Grid module
+    // ...
+    // ...
+);
+
+In your controller, you can now set up a grid like this
+
+        $grid = Grid::factory();
+
+// Now add some fields
+
+        $grid->CheckboxField('contact_id')->
+                            set('title', 'ID')->
+                            set('checked', array(1,2,3))->
+                            set('sortable', true)->
+                            set('foot', form::checkbox('check_all', 'yes', false));
+        
+        $grid->TextField('contact_number')->
+                            set('title', 'Contact Number')->
+                            set('sortable', true);
+        
+        $grid->DateField('contact_date_inserted')->
+                            set('title', 'Date inserted');
+                                                
+// You need some data...
+
+        $data = $query->select($grid->get_fields(true))->
+                       from('contact')->get();
+
+// Apply data to grid module
+
+        $grid->set('data', $res);
+
+        $html_table = $grid->render();
+
+        echo $html_table;
