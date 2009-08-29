@@ -26,7 +26,7 @@ class Datefield_Core extends Field_Core
     * @access protected
     * @var string
     */
-    protected $format = 'd.m.Y H:m:s';
+    protected $format = 'd.m.Y H:i:s';
 }
 
 ?>
